@@ -1,8 +1,11 @@
 #!/bin/bash
-ass_v=0.22
-perso_v=0.35
-face_v=0.25
-tits_v=0.18
+#these variables are the weight added to the numbers
+#for example tits can be up to 13 percent of the total number by default.
+#change these numbers to whatever you think is accurate :)
+ass_v=0.17
+perso_v=0.40
+face_v=0.30
+tits_v=0.13
 
 clear
 echo Welcome to bitch rater!
@@ -23,6 +26,7 @@ then
 	exit
 
 fi
+#these lines multiply the number you inputed by the weight determined
 ass_w=`echo "$ass * $ass_v" | bc`
 
 clear
@@ -73,11 +77,12 @@ then
 fi
 face_w=`echo "$face * $face_v" | bc`
 
+
 clear
 w_added=`echo "$face_w + $tits_w + $ass_w + $perso_w" | bc`
 echo "${bitch} is a ${w_added} out of 10"
 read -p "log this output in people.txt? [y/n]: " log
-
+#the line bellow checks if the file exists and creates it if it does
 if [ $log == y ]
 then
 	if [[ ! -e people.txt ]]; then
@@ -86,6 +91,7 @@ then
 
 echo "${bitch} is a ${w_added} out of 10" >> people.txt
 
+#this sorts the file in numerical order; from highest rated to lowest.
 sorted_file=`sort -n people.txt`
 echo  "${sorted_file}" > people.txt
 
