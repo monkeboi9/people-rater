@@ -86,6 +86,12 @@ then
 
 echo "${bitch} is a ${w_added} out of 10" >> people.txt
 
+sorted_file=`sort -n people.txt`
+echo  "${sorted_file}" > people.txt
+
+echo "current ranking:"
+cat people.txt
+
 else
 	echo bye!
 fi
